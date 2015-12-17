@@ -248,7 +248,8 @@ kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
 Point your brows to the public IP and port.
 http://<your_master_public_ip>:8080/ui
 
-This will redirect you to the right location.
+This will redirect you to the following location.
+http://<your_master_public_ip>:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/#/dashboard/
 ```
 
 ###Install nginx container
