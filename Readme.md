@@ -133,6 +133,13 @@ $ kubectl get nodes
 NAME             LABELS              STATUS
 ```
 
+7.Configure etcd server for flannel service.
+
+Update the following line inside /etc/sysconfig/flanneld configure flannel to use the etcd server locally.
+
+FLANNEL_ETCD="http://localhost:2379"
+
+
 ## Setting up Kubernetes Minions (Nodes)
 
 The following steps should be performed on minion1 and  minion2  unless specified otherwise.
