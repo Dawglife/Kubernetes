@@ -61,7 +61,8 @@ We are probably not going to use these but it provides a reference.
 mkdir /git
 cd /git
 git clone https://github.com/stackbuilder/kubernetes-workshop
-````
+```
+
 
 5. Set up your hostfiles.
 
@@ -70,14 +71,12 @@ Your master and nodes hosts file should be identical.
 Example:
 
 ```
-159.8.217.187 WS1.workshop.local WS1
-10.136.183.11 WS1-int.workshop.local WS1-int master
-159.8.217.183 WS2.workshop.local WS2
-10.136.183.29 WS2-int.workshop.local WS2-int minion1
-159.8.217.188 WS3.workshop.local WS3
-10.136.183.30 WS3-int.workshop.local WS3-int minion2
+159.8.217.185 WS6.workshop.local WS6 minion2
+159.8.217.180 WS5.workshop.local WS5 minion1
+159.8.217.182 WS4.workshop.local WS4 master
 ```
 
+For the sake of this demo we will only use the public IP address range.
 
 ## The following steps should be performed on the master.
 
@@ -112,7 +111,7 @@ KUBE_API_ARGS=""
 4.Start and enable etcd, kube-apiserver, kube-controller-manager and kube-scheduler:
 
 ```
-$ for SERVICES in etcd kube-apiserver kube-controller-manager kube-scheduler  kube-proxy flanneld; do
+$ for SERVICES in etcd kube-apiserver kube-controller-manager kube-scheduler  kube-proxy; do
     systemctl restart $SERVICES
     systemctl enable $SERVICES
     systemctl status $SERVICES
@@ -137,7 +136,24 @@ NAME             LABELS              STATUS
 
 Update the following line inside /etc/sysconfig/flanneld configure flannel to use the etcd server locally.
 
+```
 FLANNEL_ETCD="http://localhost:2379"
+FLANNEL_ETCD_KEY="/coreos.com/network"
+```
+
+8.Start Flannel service
+
+```
+systemctl restart flanneld
+systemctl enable flanneld
+```
+
+8.Test Flannel You should get different range of IP addresses on flannel0 interface on each host in the cluster.
+
+```
+$ ip a | grep flannel | grep inet
+inet 172.17.45.0/16 scope global flannel0
+```
 
 
 ## Setting up Kubernetes Minions (Nodes)
@@ -156,7 +172,7 @@ Update the following line inside /etc/sysconfig/flanneld to connect to the respe
 
 ```
 FLANNEL_ETCD="http://master:2379"
-
+FLANNEL_ETCD_KEY="/coreos.com/network"
 ```
 
 3.Configure Kubernetes default config at /etc/kubernetes/config.
