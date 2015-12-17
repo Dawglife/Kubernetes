@@ -191,6 +191,7 @@ minion1:
 KUBELET_ADDRESS="--address=0.0.0.0"
 KUBELET_PORT="--port=10250"
 # change the hostname to this host’s IP address
+KUBELET_HOSTNAME="--hostname_override=minion1"
 KUBELET_API_SERVER="--api_servers=http://master:8080"
 KUBELET_ARGS=""
 ```
@@ -201,6 +202,7 @@ minion2:
 KUBELET_ADDRESS="--address=0.0.0.0"
 KUBELET_PORT="--port=10250"
 # change the hostname to this host’s IP address
+KUBELET_HOSTNAME="--hostname_override=minion1"
 KUBELET_API_SERVER="--api_servers=http://master:8080"
 KUBELET_ARGS=""
 ```
