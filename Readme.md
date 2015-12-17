@@ -63,6 +63,22 @@ cd /git
 git clone https://github.com/stackbuilder/kubernetes-workshop
 ````
 
+5. Set up your hostfiles.
+
+Your master and nodes hosts file should be identical.
+
+Example:
+
+```
+159.8.217.187 WS1.workshop.local WS1
+10.136.183.11 WS1-int.workshop.local WS1-int master
+159.8.217.183 WS2.workshop.local WS2
+10.136.183.29 WS2-int.workshop.local WS2-int minion1
+159.8.217.188 WS3.workshop.local WS3
+10.136.183.30 WS3-int.workshop.local WS3-int minion2
+```
+
+
 ## The following steps should be performed on the master.
 
 1.Install etcd, Kubernetes and flannel through yum:
@@ -207,3 +223,32 @@ You are now set. The Kubernetes cluster is now configured and running. We can st
 ## Creating Pods (Containers)
 
 To create a pod, we need to define a yaml file in the Kubernetes master, and use the kubectl command to create it based on the definition.
+
+The first service we will run is going to be the Kubernetes UI.
+
+## Install  Kubernetes UI.
+
+The Kubernetes UI is a docker container and will be installed by using the kubectl command.
+
+1.First we will create the pod in order to run the container.
+
+```
+kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
+```
+
+2.Next we will create the service in order be able to access the container.
+
+```
+kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
+```
+
+3. Access the UI with you favourite browser.
+
+```
+Point your brows to the public IP and port.
+http://<your_master_public_ip>:8080/ui
+
+This will redirect you to the right location.
+```
+
+###Install nginx container
