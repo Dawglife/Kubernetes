@@ -242,7 +242,7 @@ kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
 kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
 ```
 
-3. Access the UI with you favourite browser.
+3.Access the UI with you favourite browser.
 
 ```
 Point your brows to the public IP and port.
