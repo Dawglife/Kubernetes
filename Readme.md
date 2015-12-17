@@ -254,6 +254,7 @@ The first service we will run is going to be the Kubernetes UI.
 ## Install  Kubernetes UI.
 
 The Kubernetes UI is a docker container and will be installed by using the kubectl command.
+The following commands must be executed on the master
 
 1.First we will create the pod in order to run the container.
 
@@ -264,13 +265,13 @@ kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
 2.Next we will create the service in order be able to access the container.
 
 ```
-kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-rc.yaml
+kubectl create -f /git/kubernetes-workshop/master/pods/kube-ui-svc.yaml
 ```
 
-3.Access the UI with you favourite browser.
+3.Access the UI with your favourite browser.
 
 ```
-Point your brows to the public IP and port.
+Point your browser to the public IP and port.
 http://<your_master_public_ip>:8080/ui
 
 This will redirect you to the following location.
