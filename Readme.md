@@ -279,3 +279,5 @@ http://<your_master_public_ip>:8080/api/v1/proxy/namespaces/kube-system/services
 ```
 
 ###Install nginx container
+
+
