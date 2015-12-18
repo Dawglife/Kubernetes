@@ -279,3 +279,9 @@ http://<your_master_public_ip>:8080/api/v1/proxy/namespaces/kube-system/services
 ```
 
 ###Install nginx container
+
+This can be done in the commandline, set the public IP to your own public IP
+```
+kubectl run my-nginx --image=nginx --replicas=2 --port=80
+kubectl expose rc my-nginx --port=80 --create-external-load-balancer=true --public-ip=<your_master_public_ip>
+```
