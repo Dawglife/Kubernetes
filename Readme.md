@@ -21,6 +21,15 @@ kubelet - Processes a container manifest so the containers are launched accordin
 kube-proxy - Provides network proxy services.
 ```
 
+# high level goal of the workshop
+
+* Install and configure a basic Kubernets cluster
+* Install the Kubernets UI
+* Create pods and services
+* Play around :-)
+* Have fun :-)
+
+ 
 ## Deployment on CentOS 7
 
 We will need 4 servers, running on CentOS 7.1 64 bit with minimal install.
