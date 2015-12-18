@@ -23,11 +23,12 @@ kube-proxy - Provides network proxy services.
 
 # High level goal of the workshop
 
-* Install and configure a basic Kubernets cluster
-* Install the Kubernets UI
-* Create pods and services
+* Install and configure a basic Kubernetes cluster
+* Install the Kubernetes UI
+* Create pods and services (Nginx among other things)
 * Play around :-)
 * Have fun :-)
+* Enter the world of cluster managed containers! :-)
 
 
 ## Deployment on CentOS 7
