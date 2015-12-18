@@ -295,3 +295,37 @@ This can be done in the commandline, set the public IP to your own public IP
 kubectl run my-nginx --image=nginx --replicas=2 --port=80
 kubectl expose rc my-nginx --port=80 --create-external-load-balancer=true --public-ip=<your_master_public_ip>
 ```
+
+Let's play around with the scaling
+
+* Get the replication controller
+
+```
+kubectl get rc my-nginx
+
+CONTROLLER   CONTAINER(S)   IMAGE(S)   SELECTOR       REPLICAS
+my-nginx     my-nginx       nginx      run=my-nginx   2
+```
+
+* Now lets scale the number of pods from 2 to 8
+
+```
+kubectl scale --current-replicas=2 --replicas=8 replicationcontrollers my-nginx
+```
+
+* You should now see that there are 8 pods
+
+```
+kubectl get rc my-nginx
+
+[root@WS4 ~]# kubectl get rc
+CONTROLLER   CONTAINER(S)   IMAGE(S)   SELECTOR       REPLICAS
+my-nginx     my-nginx       nginx      run=my-nginx   8
+```
+
+* Verify with the endpoints command.
+```
+[root@WS4 ~]# kubectl get endpoints my-nginx
+NAME       ENDPOINTS
+my-nginx   172.17.0.4:80,172.17.0.5:80,172.17.0.7:80 + 5 more...
+```
